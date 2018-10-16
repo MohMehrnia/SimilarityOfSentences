@@ -1,5 +1,8 @@
 from __future__ import unicode_literals
 
+import warnings
+warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim')
+
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from hazm import Lemmatizer, Normalizer, word_tokenize
 
