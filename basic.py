@@ -9,6 +9,9 @@ if __name__ == "__main__":
             "من عاشق ساختن نرم‌افزارهای هوشمند هستم",
             "هوشمند‌سازی یک نرم‌افزار فرآیندی بسیار پیچیده است"]
 
+    normalizer = Normalizer()
+    lemmatizer = Lemmatizer()
+
     data = [normalizer.normalize(_d) for i, _d in enumerate(data)]
     lemmatizer = Lemmatizer()
     tagged_data = [TaggedDocument(
@@ -16,13 +19,12 @@ if __name__ == "__main__":
             word_tokenize(normalizer.normalize(_d.lower())))],
         tags=[str(i)]) for i, _d in enumerate(data)]
 
-    print(tagged_data)
-    max_epochs = 100
+    max_epochs = 300
     vec_size = 40
     alpha = 0.025
 
     model = Doc2Vec(vec_size=vec_size, alpha=alpha,
-                    min_alpha=0.00025, min_count=1, dm=1, workers=4)
+                    min_alpha=0.0000025, min_count=1, dm=1, workers=4)
     model.build_vocab(tagged_data)
 
     for epoch in range(max_epochs):

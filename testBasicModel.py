@@ -13,7 +13,7 @@ if __name__ == "__main__":
     lemmatizer = Lemmatizer()
 
     model = Doc2Vec.load("BasicModel")
-    test_str = "من برنامه‌نویس پایتون هستم".lower()
+    test_str = "من به برنامه‌نویسی علاقه‌مند هستم".lower()
     test_str = normalizer.normalize(test_str)
 
     test_data = [lemmatizer.lemmatize(
