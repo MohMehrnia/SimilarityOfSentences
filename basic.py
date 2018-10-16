@@ -4,18 +4,19 @@ from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from hazm import Lemmatizer, Normalizer, word_tokenize
 
 if __name__ == "__main__":
-    data = ["من به یادگیری ماشین بسیار علاقه مند هستم",
-            "من عاش کد نویسی با پایتون هستم",
-            "من عاشق ساختن نرم افزارهای هوشمند هستم",
-            "هوشمند سازی یک نرم افزار فرآیندی بسیار پیچیده است"]
+    data = ["من به یادگیری ماشین بسیار علاقه‌مند هستم",
+            "من عاشق کد‌نویسی با پایتون هستم",
+            "من عاشق ساختن نرم‌افزارهای هوشمند هستم",
+            "هوشمند‌سازی یک نرم‌افزار فرآیندی بسیار پیچیده است"]
 
-    normalizer = Normalizer()
+    data = [normalizer.normalize(_d) for i, _d in enumerate(data)]
     lemmatizer = Lemmatizer()
     tagged_data = [TaggedDocument(
-        words=word_tokenize(lemmatizer.lemmatize(
-            normalizer.normalize(_d.lower()))),
+        words=[lemmatizer.lemmatize(_d) for i, _d in enumerate(
+            word_tokenize(normalizer.normalize(_d.lower())))],
         tags=[str(i)]) for i, _d in enumerate(data)]
 
+    print(tagged_data)
     max_epochs = 100
     vec_size = 40
     alpha = 0.025
@@ -33,5 +34,3 @@ if __name__ == "__main__":
     model.save("BasicModel")
     model.delete_temporary_training_data(
         keep_doctags_vectors=True, keep_inference=True)
-
-    
