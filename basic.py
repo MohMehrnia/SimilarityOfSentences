@@ -30,7 +30,6 @@ if __name__=="__main__":
     model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
 
     test_data = word_tokenize("من برنامه نویس پایتون هستم".lower())
-    result = model.docvecs.most_similar([model.infer_vector(test_data)], topn=5)
-    print(result)
+    result = model.docvecs.most_similar([model.infer_vector(test_data)], topn=5)    
     
-
+    [print(data[int(result[i][0])]) for i in range(0, len(result))]
