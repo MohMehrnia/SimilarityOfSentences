@@ -16,7 +16,7 @@ if __name__=="__main__":
                                 tags=[str(i)]) for i, _d in enumerate(data)]
 
     max_epochs = 100
-    vec_size = 20
+    vec_size = 40
     alpha = 0.025
 
     model = Doc2Vec(vec_size=vec_size, alpha=alpha, min_alpha=0.00025, min_count=1, dm=1, workers=4)
