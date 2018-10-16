@@ -11,7 +11,9 @@ if __name__=="__main__":
 
     normalizer = Normalizer()
     lemmatizer = Lemmatizer()
-    tagged_data = [TaggedDocument(words=word_tokenize(lemmatizer.lemmatize(normalizer.normalize(_d.lower()))), tags=[str(i)]) for i, _d in enumerate(data)]
+    tagged_data = [TaggedDocument(
+                                words=word_tokenize(lemmatizer.lemmatize(normalizer.normalize(_d.lower()))), 
+                                tags=[str(i)]) for i, _d in enumerate(data)]
 
     max_epochs = 100
     vec_size = 20
