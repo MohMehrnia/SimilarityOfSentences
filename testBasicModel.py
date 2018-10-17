@@ -1,19 +1,21 @@
 from __future__ import unicode_literals
 
+import warnings
+warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim')
+
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from hazm import Lemmatizer, Normalizer, word_tokenize
+import pandas as pd
 
 if __name__ == "__main__":
-    data = ["من به یادگیری ماشین بسیار علاقه‌مند هستم",
-            "من عاشق کد‌نویسی با پایتون هستم",
-            "من عاشق ساختن نرم‌افزارهای هوشمند هستم",
-            "هوشمند‌سازی یک نرم‌افزار فرآیندی بسیار پیچیده است"]
+    data = pd.read_excel("dataset.xlsx")    
+    data = list(data["description"].astype(str).values.flatten())    
 
     normalizer = Normalizer()
     lemmatizer = Lemmatizer()
 
     model = Doc2Vec.load("BasicModel")
-    test_str = "من به برنامه‌نویسی علاقه‌مند هستم".lower()
+    test_str = "شن پاشی رنگ آمیزی".lower()
     test_str = normalizer.normalize(test_str)
 
     test_data = [lemmatizer.lemmatize(
