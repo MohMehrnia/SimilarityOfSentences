@@ -6,8 +6,8 @@ from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from hazm import Lemmatizer, Normalizer, word_tokenize
 
 if __name__ == "__main__":
-    data = pd.read_excel("dataset.xlsx")    
-    data = list(data["description"].astype(str).values.flatten())    
+    data = pd.read_excel("dataset.xlsx")
+    data = list(data["description"].astype(str).values.flatten())
     normalizer = Normalizer()
     lemmatizer = Lemmatizer()
 
