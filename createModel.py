@@ -16,7 +16,7 @@ if __name__ == "__main__":
         words=[lemmatizer.lemmatize(_d) for i, _d in enumerate(
             word_tokenize(normalizer.normalize(_d.lower())))],
         tags=[str(i)]) for i, _d in enumerate(data)]
-
+    
     model = Doc2Vec(vec_size=100, alpha=0.025,
                     min_alpha=0.0000025, min_count=1, dm=1, workers=4)
     model.build_vocab(tagged_data)
