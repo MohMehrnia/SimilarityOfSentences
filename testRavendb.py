@@ -19,7 +19,7 @@ if __name__=='__main__':
     store.initialize()
     with store.open_session() as session:
         # [session.store(Document(i, data[i]))  for i in range(0, len(data)) if data[i]!="description"]
-        # session.save_changes()
+        # session.save_changes()        
         result = list(session.query(collection_name='Documents'))
         print(result[5].title)
 
